@@ -18,13 +18,16 @@ function Phrase(content) {
   // For example:
   //   new Phrase("Hello, world!").letters() === "Helloworld"
   this.letters = function letters() {
-    return Array.from(this.content).filter(c => c.match(/[a-z]/i)).join("");
-    }
+    const lettersRegEx = /[a-z]/gi;
+    return (this.content.match(/[a-z]/gi) || []).join("");
+  }
 
   // Returns true if the phrase is a palindrome, false otherwise.
   this.palindrome = function palindrome() {
-    return this.processedContent() === this.processedContent().reverse();
+    if (this.processedContent()) {
+      return this.processedContent() === this.processedContent().reverse();
+    } else {
+      return false;
+    }
   }
 }
-
-// TranslatedPhrase.prototype = new Phrase();
